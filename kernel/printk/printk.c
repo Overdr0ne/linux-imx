@@ -923,7 +923,7 @@ static int devkmsg_open(struct inode *inode, struct file *file)
 	if (!user)
 		return -ENOMEM;
 
-	ratelimit_default_init(&user->rs);
+	ratelimit_state_init(&user->rs, (5 * HZ), 100); /* no more than 100 messages in 5 s*/
 	ratelimit_set_flags(&user->rs, RATELIMIT_MSG_ON_RELEASE);
 
 	mutex_init(&user->lock);
