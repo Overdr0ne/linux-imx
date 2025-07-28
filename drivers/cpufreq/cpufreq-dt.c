@@ -328,7 +328,7 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
 			goto err;
 	}
 
-	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
+	dev_emerg(pdev->dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	if (data) {
 		if (data->have_governor_per_policy)
 			dt_cpufreq_driver.flags |= CPUFREQ_HAVE_GOVERNOR_PER_POLICY;
@@ -342,7 +342,7 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
 		}
 	}
 
-	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
+	dev_emerg(pdev->dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	ret = cpufreq_register_driver(&dt_cpufreq_driver);
 	if (ret) {
 		dev_err(&pdev->dev, "failed register driver: %d\n", ret);
