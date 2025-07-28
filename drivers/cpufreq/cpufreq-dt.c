@@ -196,14 +196,18 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 	const char *reg_name[] = { NULL, NULL };
 	int ret;
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
+
 	/* Check if this CPU is already covered by some other policy */
 	if (cpufreq_dt_find_data(cpu))
 		return 0;
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	cpu_dev = get_cpu_device(cpu);
 	if (!cpu_dev)
 		return -EPROBE_DEFER;
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
 	if (!priv)
 		return -ENOMEM;
@@ -324,6 +328,7 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
 			goto err;
 	}
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	if (data) {
 		if (data->have_governor_per_policy)
 			dt_cpufreq_driver.flags |= CPUFREQ_HAVE_GOVERNOR_PER_POLICY;
@@ -337,6 +342,7 @@ static int dt_cpufreq_probe(struct platform_device *pdev)
 		}
 	}
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	ret = cpufreq_register_driver(&dt_cpufreq_driver);
 	if (ret) {
 		dev_err(&pdev->dev, "failed register driver: %d\n", ret);
