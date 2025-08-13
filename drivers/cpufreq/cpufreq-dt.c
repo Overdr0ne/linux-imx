@@ -218,6 +218,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 	cpumask_set_cpu(cpu, priv->cpus);
 	priv->cpu_dev = cpu_dev;
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	/*
 	 * OPP layer will be taking care of regulators now, but it needs to know
 	 * the name of the regulator first.
@@ -232,6 +233,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 		}
 	}
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	/* Get OPP-sharing information from "operating-points-v2" bindings */
 	ret = dev_pm_opp_of_get_sharing_cpus(cpu_dev, priv->cpus);
 	if (ret) {
@@ -247,6 +249,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 			fallback = true;
 	}
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	/*
 	 * Initialize OPP tables for all priv->cpus. They will be shared by
 	 * all CPUs which have marked their CPUs shared with OPP bindings.
@@ -265,6 +268,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 		goto out;
 	}
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	/*
 	 * The OPP table must be initialized, statically or dynamically, by this
 	 * point.
@@ -289,6 +293,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 		dev_err(cpu_dev, "failed to init cpufreq table: %d\n", ret);
 		goto out;
 	}
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 
 	list_add(&priv->node, &priv_list);
 	return 0;
