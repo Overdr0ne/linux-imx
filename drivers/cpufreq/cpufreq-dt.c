@@ -208,6 +208,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 		return -EPROBE_DEFER;
 
 	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
 	if (!priv)
 		return -ENOMEM;
