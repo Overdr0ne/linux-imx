@@ -215,6 +215,7 @@ static int dt_cpufreq_early_init(struct device *dev, int cpu)
 	if (!zalloc_cpumask_var(&priv->cpus, GFP_KERNEL))
 		return -ENOMEM;
 
+	dev_emerg(dev, "SAMSAM: %s: %d\n", __func__, __LINE__);
 	cpumask_set_cpu(cpu, priv->cpus);
 	priv->cpu_dev = cpu_dev;
 
