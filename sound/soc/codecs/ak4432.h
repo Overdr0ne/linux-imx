@@ -24,8 +24,8 @@
 				  Settings
 ****************************************************/
 #define AK4432_I2C_IF			//I2C IF
-//#define AK4432_PD_SUSPEND		
-//#define AK4432_DEBUG			//used at debug mode
+//#define AK4432_PD_SUSPEND
+#define AK4432_DEBUG			//used at debug mode
 //#define AK4432_ACKS_USE_MANUAL_MODE
 
 #define AK4432_COMMAND_CODE_WRITE	0xC0
@@ -45,7 +45,7 @@
 /* Bitfield Definitions */
 
 
-//SDS1-0 bits 
+//SDS1-0 bits
 #define AK4432_SDS01_MASK		0x60
 
 //Digital Filter (DASD, DASL)
@@ -58,9 +58,8 @@
 #define AK4432_DIF_MASK			0x03
 #define AK4432_DIF2_MASK		0x04
 #define AK4432_DIF2_SHIFT		2
-#define AK4432_DIF_MSB_LOW_FS_MODE	    (2)
-#define AK4432_DIF_I2S_LOW_FS_MODE		(3)
-
+#define AK4432_DIF_MSB_LOW_FS_MODE	(2)
+#define AK4432_DIF_I2S_LOW_FS_MODE	(3)
 
 #ifdef AK4432_ACKS_USE_MANUAL_MODE
 /* AK4432_01_CONTROL1 (0x01) Fields */
@@ -78,4 +77,3 @@
 #endif
 
 #endif
-
