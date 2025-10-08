@@ -25,8 +25,8 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 #include <linux/types.h>
-#include <linux/regmap.h>  // '15/10/23
-#include <linux/of_gpio.h>	//add 16/06/13
+#include <linux/regmap.h>
+#include <linux/of_gpio.h>
 #include <linux/gpio.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
@@ -124,8 +124,8 @@ static int get_reg_debug( struct snd_kcontrol *kcontrol,struct snd_ctl_elem_valu
 
 static int set_reg_debug( struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
 {
-	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);	//16/06/13
-    u32    reg = ucontrol->value.enumerated.item[0];
+	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);
+	u32    reg = ucontrol->value.enumerated.item[0];
 	int    i, value;
 
 	nReg= reg ;
@@ -153,7 +153,7 @@ static int get_digfil(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *
 
 static int get_sds(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
 {
-	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);	//16/06/13
+	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);
 	struct ak4432_priv *ak4432 = snd_soc_component_get_drvdata(codec);
 
 	ucontrol->value.enumerated.item[0] = ak4432->sds;
@@ -163,7 +163,7 @@ static int get_sds(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *uco
 
 static int set_digfil(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
 {
-	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);	//16/06/13
+	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);
 	struct ak4432_priv *ak4432 = snd_soc_component_get_drvdata(codec);
 
 	int reg, num;
@@ -228,7 +228,7 @@ static const struct snd_kcontrol_new ak4432_snd_controls[] = {
 
 };
 
-static const char* ak4432_dac_select_texts[] = {	"OFF",	"ON"	};
+static const char* ak4432_dac_select_texts[] = {"OFF","ON"};
 
 static const struct soc_enum ak4432_dac_mux_enum =
 	SOC_ENUM_SINGLE_VIRT(ARRAY_SIZE(ak4432_dac_select_texts), ak4432_dac_select_texts);
@@ -246,9 +246,9 @@ static const struct snd_soc_dapm_widget ak4432_dapm_widgets[] = {
 
 static const struct snd_soc_dapm_route ak4432_intercon[] =
 {
-	{"AK4432 DAC",	NULL, "DAC to AOUT"},
-	{"DAC to AOUT",	"ON",	"AK4432 SDTI"},
-	{"AK4432 AOUT",	NULL, "AK4432 DAC"},
+	{"AK4432 DAC", NULL, "DAC to AOUT"},
+	{"DAC to AOUT", "ON", "AK4432 SDTI"},
+	{"AK4432 AOUT", NULL, "AK4432 DAC"},
 };
 
 
@@ -261,7 +261,7 @@ static int ak4432_hw_params(
 	struct ak4432_priv *ak4432 = snd_soc_component_get_drvdata(codec);
 
 #ifdef AK4432_ACKS_USE_MANUAL_MODE
-	u8	dfs;
+	u8 dfs;
 #endif
 	int nfs1;
 	int dif2;
@@ -518,7 +518,9 @@ static int ak4432_set_dai_mute(struct snd_soc_dai *dai, int mute, int direction)
 	reg = snd_soc_component_read( codec,  AK4432_03_CONTROL2);
 	ats = ( reg & 0x04 ) >> 2;
 
-	akdbgprt("\t[AK4432] %s mute[%s] nfs[%d]\n",__FUNCTION__, mute ? "ON":"OFF", nfs);
+	akdbgprt("\t[AK4432] %s mute[%s] nfs[%d]\n", __FUNCTION__,
+		 mute ? "ON" : "OFF", nfs);
+	akdbgprt("\t[ak4432] mute-gpio[%d]",ak4432->mute_gpio);
 
 	switch( ats ){
 		case 0:
@@ -744,7 +746,6 @@ static int ak4432_suspend(struct snd_soc_component *codec)
 
 static int ak4432_resume(struct snd_soc_component *codec)
 {
-
 	ak4432_init_reg(codec);
 
 	return 0;
