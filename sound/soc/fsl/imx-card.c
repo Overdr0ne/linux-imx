@@ -626,6 +626,8 @@ static int imx_card_parse_of(struct imx_card_data *data)
 			/* Check the akcodec type */
 			if (!strcmp(link->codecs->dai_name, "ak4458-aif"))
 				plat_data->type = CODEC_AK4458;
+			else if (!strcmp(link->codecs->dai_name, "ak4432-aif"))
+				plat_data->type = CODEC_AK4497;
 			else if (!strcmp(link->codecs->dai_name, "ak4497-aif"))
 				plat_data->type = CODEC_AK4497;
 			else if (!strcmp(link->codecs->dai_name, "ak5558-aif"))
