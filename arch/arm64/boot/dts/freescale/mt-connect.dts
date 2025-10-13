@@ -385,6 +385,17 @@
 	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
 	status = "okay";
 
+	ak4432: ak4432@19 {
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_reg_hp_dac>;
+		#sound-dai-cells = <0>;
+		sound-name-prefix = "0";
+		compatible = "akm,ak4432";
+		reg = <0x19>;
+		ak4432,pdn-gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+		ak4432,mute_gpio = <&gpio4 30 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
 };
 
 &gpio1 {
