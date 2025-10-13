@@ -647,8 +647,6 @@ static int ak4432_parse_dt(struct ak4432_priv *ak4432)
 		return -1;
 	}
 
-	return 0;
-
 	ak4432->mute_gpio = of_get_named_gpio(np, "ak4432,mute_gpio", 0);
 	if (ak4432->mute_gpio < 0) {
 		printk(KERN_ERR "ak4432 mute pin(%u) is invalid(%d)\n", ak4432->mute_gpio, __LINE__);
