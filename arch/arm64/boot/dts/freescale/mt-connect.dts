@@ -425,17 +425,10 @@
 };
 
 &gpio4 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_gpio4>;
 	gpio-line-names = "", "", "BRIDGE_RXD0", "BRIDGE_RXD1", "S_BRIDGE_RXD2", "S_BRIDGE_RXD3", "", "",
 	"", "", "BRIDGE_LRCLK", "BRIDGE_BCLK", "BRIDGE_TXD0", "BRIDGE_TXD1", "S_BRIDGE_TXD2", "S_BRIDGE_TXD3",
 	"", "", "", "", "", "", "", "",
 	"", "", "", "", "HP_DAC_PDN_N", "SPI2_INT", "HP_DAC_I2CFIL", "DPM_HP_DAC_LRCK";
-	hp_dac_pdn_n {
-		gpio-hog;
-		gpios = <28 GPIO_ACTIVE_HIGH>;
-		output-high;
-	};
 	hp_dac_i2cfil {
 		gpio-hog;
 		gpios = <30 GPIO_ACTIVE_HIGH>;
@@ -690,10 +683,10 @@
 		>;
 	};
 
-	pinctrl_gpio4: gpio4grp {
+	pinctrl_reg_hp_dac: gpioregaudio {
 		fsl,pins = <
-		MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28			0x06 /* HP_DAC_PDN */
-		MX8MM_IOMUXC_SAI3_RXD_GPIO4_IO30			0x06 /* HP_DAC_I2C_FIL */
+		MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28			0x142 /* HP_DAC_PDN Pull-down */
+		MX8MM_IOMUXC_SAI3_RXD_GPIO4_IO30			0x146 /* HP_DAC_I2C_FIL Pull-up */
 		>;
 	};
 
