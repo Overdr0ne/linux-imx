@@ -649,10 +649,8 @@ static int ehci_run (struct usb_hcd *hcd)
 	up_write(&ehci_cf_port_reset_rwsem);
 
 	if (rc) {
-#ifdef MT_DEBUG
 		ehci_err(ehci, "USB %x.%x, controller refused to start: %d\n",
 			 ((ehci->sbrn & 0xf0)>>4), (ehci->sbrn & 0x0f), rc);
-#endif
 		return rc;
 	}
 
